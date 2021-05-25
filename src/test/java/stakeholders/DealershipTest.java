@@ -16,10 +16,12 @@ public class DealershipTest {
     Car car2;
     ElectricCar electricCar;
     HybridCar hybridCar;
+    Customer customer;
 
     @Before
     public void setUp() {
-        dealership = new Dealership("Clan Motors", 0);
+        dealership = new Dealership("Clan Motors", 10000);
+        customer = new Customer("Mary", 4000);
         car1 = new Car("purple", 1000, BodyType.SUV, 1800);
         car2 = new Car("red", 2000, BodyType.COUPE, 1400);
         electricCar = new ElectricCar("green", 1500, BodyType.SALOON, 60);
@@ -33,7 +35,7 @@ public class DealershipTest {
 
     @Test
     public void hasTill(){
-        assertEquals(0, dealership.getTill());
+        assertEquals(10000, dealership.getTill());
     }
 
     @Test
@@ -43,5 +45,29 @@ public class DealershipTest {
         dealership.addCar(electricCar);
         dealership.addCar(hybridCar);
         assertEquals(4, dealership.countStock());
+    }
+
+    @Test
+    public void canRemoveCashFromWallet() {
+        dealership.reduceTill(1000);
+        assertEquals(9000, dealership.getTill());
+    }
+
+    @Test
+    public void canBuyCar() {
+        dealership.buyCar(car1);
+        assertEquals(9000, dealership.getTill());
+        assertEquals(1, dealership.countStock());
+    }
+
+    @Test
+    public void canSellCarToCustomer(){
+        dealership.addCar(car1);
+        dealership.addCar(car2);
+        dealership.makeSale(car1, customer);
+        assertEquals(11000, dealership.getTill());
+        assertEquals(1, dealership.countStock());
+        assertEquals(3000, customer.getWallet());
+        assertEquals(1, customer.countCollectionOfVehicles());
     }
 }

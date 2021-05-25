@@ -21,7 +21,7 @@ public class HybridCarTest {
 
     @Test
     public void hasPrice(){
-        assertEquals(3000, hybridCar.getPrice(), 0.0);
+        assertEquals(3000, hybridCar.getPrice());
     }
 
     @Test

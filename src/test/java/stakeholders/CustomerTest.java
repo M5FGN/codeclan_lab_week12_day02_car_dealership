@@ -46,4 +46,16 @@ public class CustomerTest {
         assertEquals(4, customer.countCollectionOfVehicles());
     }
 
+    @Test
+    public void canRemoveCashFromWallet() {
+        customer.reduceWallet(100);
+        assertEquals(3900, customer.getWallet());
+    }
+
+    @Test
+    public void canBuyCar() {
+    customer.buyCar(car1);
+    assertEquals(3000, customer.getWallet());
+    assertEquals(1, customer.countCollectionOfVehicles());
+    }
 }

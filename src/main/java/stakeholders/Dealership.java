@@ -1,10 +1,11 @@
 package stakeholders;
 
+import vehicles.Car;
 import vehicles.Vehicle;
 
 import java.util.ArrayList;
 
-public class Dealership {
+public class Dealership implements IBuy{
 
     private String companyName;
     private int till;
@@ -32,7 +33,30 @@ public class Dealership {
         this.stock.add(vehicle);
     }
 
+    public void removeCar(Vehicle vehicle) {
+        this.stock.remove(vehicle);
+    }
+
     public int countStock(){
         return this.stock.size();
+    }
+
+    public void reduceTill(int amount){
+        this.till -= amount;
+    }
+
+    public void increaseTill(int amount){
+        this.till += amount;
+    }
+
+    public void buyCar(Vehicle vehicle) {
+        this.addCar(vehicle);
+        this.reduceTill(vehicle.getPrice());
+    }
+
+    public void makeSale(Vehicle vehicle, Customer customer) {
+        this.removeCar(vehicle);
+        this.increaseTill(vehicle.getPrice());
+        customer.buyCar(vehicle);
     }
 }

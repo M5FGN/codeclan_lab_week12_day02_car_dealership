@@ -4,7 +4,7 @@ import vehicles.Vehicle;
 
 import java.util.ArrayList;
 
-public class Customer {
+public class Customer implements IBuy{
 
     private String name;
     private int wallet;
@@ -36,4 +36,10 @@ public class Customer {
         return this.collectionOfVehicles.size();
     }
 
+    public void reduceWallet(int amount){ this.wallet -= amount; }
+
+    public void buyCar(Vehicle vehicle) {
+        this.addCar(vehicle);
+        this.reduceWallet(vehicle.getPrice());
+    }
 }

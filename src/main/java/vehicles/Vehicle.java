@@ -5,10 +5,10 @@ import com.sun.xml.internal.ws.wsdl.writer.document.soap.Body;
 public abstract class Vehicle {
 
     private String color;
-    private double price;
+    private int price;
     private BodyType bodyType;
 
-    public Vehicle(String color, double price, BodyType bodyType) {
+    public Vehicle(String color, int price, BodyType bodyType) {
         this.color = color;
         this.price = price;
         this.bodyType = bodyType;
@@ -18,7 +18,7 @@ public abstract class Vehicle {
         return color;
     }
 
-    public double getPrice() {
+    public int getPrice() {
         return price;
     }
 
